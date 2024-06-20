@@ -1,10 +1,10 @@
 import React from 'react';
-import GetLocation from './GetLocation';
+import { Component } from './GetGeoLOcation'; // Importing the named export 'Component'
 
 function App() {
   return (
     <div className="App">
-      <GetLocation />
+      <Component />
     </div>
   );
 }
