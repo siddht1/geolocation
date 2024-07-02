@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'flowbite-react'; // Ensure you import Card from flowbite-react
 
-
-const BASE_URL = 'https://reversegeocoder.vercel.app/distance?';
+const BASE_URL = 'https://geocoder.cooliewale.in/reversegeocoder?';
 
 export function Component() {
   const [position, setPosition] = useState({
@@ -48,7 +47,7 @@ export function Component() {
           setDistanceData(data);
         })
         .catch((error) => {
-          console.error('Error fetching distance:', error);
+          console.error('Error fetching distance data:', error);
         });
     }
   }, [position]);
@@ -75,7 +74,7 @@ export function Component() {
                     <li className="py-3 sm:py-4">
                       <div className="flex items-center space-x-4">
                         <div className="shrink-0">
-                    
+                          {/* Example image */}
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
@@ -104,12 +103,12 @@ export function Component() {
           </Card>
         </div>
 
-        {/* Distance Information Card */}
+        {/* Information Card */}
         <div className="column col-6">
           <Card className="max-w-sm">
             <div className="mb-4 flex items-center justify-between">
               <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
-                Distance Information
+                Information
               </h5>
             </div>
             <div className="flow-root">
@@ -120,24 +119,12 @@ export function Component() {
                       <div className="flex items-center space-x-4">
                         <div className="shrink-0">
                           {/* Example image */}
-                     
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                            Origin: {distanceData.origin_addresses[0]}
+                            Place: {distanceData.location['name']}, {distanceData.location['region']}, {distanceData.location['country']}
                           </p>
-                          <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                            Destination: {distanceData.destination_addresses[0]}
-                          </p>
-                          <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                            Distance: {distanceData.rows[0].elements[0].distance.text}
-                          </p>
-                          <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                            Duration: {distanceData.rows[0].elements[0].duration.text}
-                          </p>
-                          <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                            Status: {distanceData.status}
-                          </p>
+                        
                         </div>
                       </div>
                     </li>
